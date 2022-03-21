@@ -36,7 +36,7 @@ def RK3(start, stop, step, Cauchy, a, func):
     
     while time[-1] < stop:
         k1 = scipy.optimize.root((lambda k: func(solution[-1] + step * (3 + np.sqrt(3))/6 * k, a) - k), func(solution[-1],a)).x
-        k2 = scipy.optimize.root((lambda k: func(solution[-1] + step * ((3 + 2*np.sqrt(3))/3 * k1 + (3 + np.sqrt(3)/6) * k), a) - k),
+        k2 = scipy.optimize.root((lambda k: func(solution[-1] + step * (-np.sqrt(3)/3 * k1 + (3 + np.sqrt(3)/6) * k), a) - k),
                            func(solution[-1],a)).x
         time.append(time[-1] + step)
         solution.append(solution[-1] + step/2 * (k1 + k2))
